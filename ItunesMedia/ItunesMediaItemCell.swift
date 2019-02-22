@@ -11,9 +11,9 @@ import UIKit
 class ItunesMediaItemCell: UITableViewCell {
     
     // MARK: - Variables
-    var artworkImageView: UIImageView!
-    var artistNameLabel: UILabel!
-    var mediaNameLabel: UILabel!
+    var artworkImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    var artistNameLabel = UILabel()
+    var mediaNameLabel =  UILabel()
     
     var media: ItunesMedia? {
         didSet {
@@ -27,37 +27,53 @@ class ItunesMediaItemCell: UITableViewCell {
         setupCell()
     }
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCell()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    // MARK: - Setup
+    
     private func setupCell() {
         setupImageView()
         setupInfoStackView()
+        
+        contentView.backgroundColor = .black
     }
     
     private func setupImageView() {
-        artworkImageView = UIImageView()
-        
         // constraints for artworkImageView
         artworkImageView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(artworkImageView)
+        contentView.addSubview(artworkImageView)
         
-        artworkImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        artworkImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        artworkImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
-        artworkImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0)
+        artworkImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        artworkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+        artworkImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        artworkImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        artworkImageView.heightAnchor.constraint(equalToConstant: 70).isActive =  true
     }
     
     private func setupInfoStackView() {
-        artistNameLabel = UILabel()
-        mediaNameLabel = UILabel()
+        artistNameLabel.textColor = .white
+        mediaNameLabel.textColor = .white
+        
+        contentView.addSubview(artistNameLabel)
+        contentView.addSubview(mediaNameLabel)
         
         let stackView = UIStackView(arrangedSubviews: [artistNameLabel, mediaNameLabel])
         stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
         
         // constraints for the info stack view
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stackView)
+        contentView.addSubview(stackView)
 
-        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 00).isActive = true
         stackView.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 20).isActive = true
         
     }
