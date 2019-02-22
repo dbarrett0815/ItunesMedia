@@ -26,7 +26,7 @@ class ItunesMediaViewController: UITableViewController {
     }
     
     private func setupTableView() {
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = .gray
     }
     
     private func registerCells() {

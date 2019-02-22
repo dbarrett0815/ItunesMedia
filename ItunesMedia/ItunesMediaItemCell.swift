@@ -73,11 +73,11 @@ class ItunesMediaItemCell: UITableViewCell {
         setupImageView()
         setupInfoStackView()
         
-        contentView.backgroundColor = .black
+        contentView.backgroundColor = .gray
     }
     
     private func setupImageView() {
-        artworkImageView.layer.cornerRadius = 15
+        artworkImageView.layer.cornerRadius = 20
         artworkImageView.layer.masksToBounds = true
         artworkImageView.contentMode = .scaleAspectFit
         
