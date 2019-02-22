@@ -12,10 +12,13 @@ class ItunesMediaViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
     }
     
     private func setupView() {
+        title = "Itunes Media"
         
     }
+    
 }
 
