@@ -10,6 +10,8 @@ import UIKit
 
 class ItunesMediaViewController: UITableViewController {
     
+    var feeds = [ItunesFeed]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -17,8 +19,17 @@ class ItunesMediaViewController: UITableViewController {
     
     private func setupView() {
         title = "Itunes Media"
-        
+    }
+}
+
+// MARK: - UITableViewDelegate && UITableViewDataSource
+extension ItunesMediaViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return feeds.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return feeds[section].media.count
     }
     
 }
-
