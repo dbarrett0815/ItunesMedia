@@ -8,9 +8,16 @@
 
 import Foundation
 
-struct ItunesMedia {
+struct ItunesMedia: Codable {
     let artistName: String
     let id: String
     let name: String
     let artworkUrl: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case artistName
+        case id
+        case name
+        case artworkUrl = "artworkUrl100"
+    }
 }

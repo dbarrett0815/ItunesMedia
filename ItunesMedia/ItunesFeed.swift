@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct ItunesFeed {
+struct ItunesFeed: Codable {
     let title: String
     let media: [ItunesMedia]
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case media = "results"
+    }
 }
