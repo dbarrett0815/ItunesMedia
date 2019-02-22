@@ -33,18 +33,14 @@ class ItunesMediaViewController: UITableViewController {
         tableView.register(ItunesMediaItemCell.self , forCellReuseIdentifier: mediaCellId)
     }
     
-    
-    /// Gets new apps and new itunes music. A network call like this would typically go in its own class of other network functions
-    private func fetchItunesMedia() {
+    private func fetchNewApps() {
         let newAppsUrl = URL(string: "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-apps-we-love/all/10/explicit.json")!
-//        let newMusicUrl = URL(string: "https://rss.itunes.apple.com/api/v1/us/apple-music/new-releases/all/10/explicit.json ")!
         
         // get the data for the new apps
         URLSession.shared.dataTask(with: newAppsUrl) { (data, response, error) in
             // check if error has occured. If so show error alert
             if error != nil {
                 self.showErrorAlert()
-                print(error)
                 return
             }
             
@@ -62,6 +58,40 @@ class ItunesMediaViewController: UITableViewController {
                 print(error)
             }
         }.resume()
+
+    }
+    
+    private func fetchNewMusic() {
+        let newMusicUrl = URL(string: "https://rss.itunes.apple.com/api/v1/us/apple-music/new-releases/all/10/explicit.json")!
+        
+        // get the data for the new music
+        URLSession.shared.dataTask(with: newMusicUrl) { (data, response, error) in
+            // check if error has occured. If so show error alert
+            if error != nil {
+                self.showErrorAlert()
+                return
+            }
+            
+            guard let responseData = data else {return}
+            do {
+                let feedReponse = try JSONDecoder().decode(ItunesFeedResponse.self, from: responseData)
+                
+                DispatchQueue.main.async {
+                    self.feeds.append(feedReponse.feed)
+                    self.tableView.reloadData()
+                }
+                
+            } catch {
+                self.showErrorAlert()
+                print(error)
+            }
+        }.resume()
+    }
+    
+    /// Gets new apps and new itunes music. A network call like this would typically go in its own class of other network functions
+    private func fetchItunesMedia() {
+        fetchNewMusic()
+        fetchNewApps()
     }
     
     /// Shows an alert that an error has occured. Typically we will check what kind of error and show the correct alert.
@@ -100,6 +130,10 @@ extension ItunesMediaViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        
     }
     
 }
