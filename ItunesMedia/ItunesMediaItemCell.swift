@@ -94,7 +94,7 @@ class ItunesMediaItemCell: UITableViewCell {
     
     private func setupInfoStackView() {
         artistNameLabel.textColor = .white
-        artistNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        artistNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
         
         mediaNameLabel.textColor = .white
         
@@ -103,16 +103,15 @@ class ItunesMediaItemCell: UITableViewCell {
         
         let stackView = UIStackView(arrangedSubviews: [artistNameLabel, mediaNameLabel])
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
+        stackView.spacing = 2
         
         // constraints for the info stack view
         stackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(stackView)
 
-        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 00).isActive = true
         stackView.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 20).isActive = true
-        
+        stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
 
 }
