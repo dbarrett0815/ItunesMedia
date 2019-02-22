@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ItunesMediaViewController.swift
 //  ItunesMedia
 //
 //  Created by Davone Barrett on 2/22/19.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ItunesMediaViewController: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    
+    private func setupView() {
+        
+    }
 }
 

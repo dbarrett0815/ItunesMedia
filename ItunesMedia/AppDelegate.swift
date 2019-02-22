@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // set the root view
+        let itunesMediaVc = ItunesMediaViewController()
+        let navi = UINavigationController(rootViewController: itunesMediaVc)
+        
+        window = UIWindow()
+        window?.rootViewController = navi
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

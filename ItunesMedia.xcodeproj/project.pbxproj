@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		5338173E22209D11008F683E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338173D22209D11008F683E /* AppDelegate.swift */; };
-		5338174022209D11008F683E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338173F22209D11008F683E /* ViewController.swift */; };
-		5338174322209D11008F683E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5338174122209D11008F683E /* Main.storyboard */; };
 		5338174522209D15008F683E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5338174422209D15008F683E /* Assets.xcassets */; };
 		5338174822209D15008F683E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5338174622209D15008F683E /* LaunchScreen.storyboard */; };
+		533817502220A035008F683E /* ItunesMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338174F2220A035008F683E /* ItunesMediaViewController.swift */; };
+		533817522220A113008F683E /* ItunesMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533817512220A113008F683E /* ItunesMedia.swift */; };
+		533817542220A14D008F683E /* ItunesFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533817532220A14D008F683E /* ItunesFeed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5338173A22209D11008F683E /* ItunesMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ItunesMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5338173D22209D11008F683E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5338173F22209D11008F683E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5338174222209D11008F683E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5338174422209D15008F683E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5338174722209D15008F683E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5338174922209D15008F683E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5338174F2220A035008F683E /* ItunesMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesMediaViewController.swift; sourceTree = "<group>"; };
+		533817512220A113008F683E /* ItunesMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesMedia.swift; sourceTree = "<group>"; };
+		533817532220A14D008F683E /* ItunesFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesFeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				5338173D22209D11008F683E /* AppDelegate.swift */,
-				5338173F22209D11008F683E /* ViewController.swift */,
-				5338174122209D11008F683E /* Main.storyboard */,
+				5338174F2220A035008F683E /* ItunesMediaViewController.swift */,
+				533817512220A113008F683E /* ItunesMedia.swift */,
+				533817532220A14D008F683E /* ItunesFeed.swift */,
 				5338174422209D15008F683E /* Assets.xcassets */,
 				5338174622209D15008F683E /* LaunchScreen.storyboard */,
 				5338174922209D15008F683E /* Info.plist */,
@@ -124,7 +127,6 @@
 			files = (
 				5338174822209D15008F683E /* LaunchScreen.storyboard in Resources */,
 				5338174522209D15008F683E /* Assets.xcassets in Resources */,
-				5338174322209D11008F683E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +137,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5338174022209D11008F683E /* ViewController.swift in Sources */,
+				533817522220A113008F683E /* ItunesMedia.swift in Sources */,
 				5338173E22209D11008F683E /* AppDelegate.swift in Sources */,
+				533817502220A035008F683E /* ItunesMediaViewController.swift in Sources */,
+				533817542220A14D008F683E /* ItunesFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5338174122209D11008F683E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5338174222209D11008F683E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5338174622209D15008F683E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
