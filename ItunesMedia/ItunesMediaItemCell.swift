@@ -17,9 +17,40 @@ class ItunesMediaItemCell: UITableViewCell {
     
     var media: ItunesMedia? {
         didSet {
-            artistNameLabel.text = media?.artistName
-            mediaNameLabel.text = media?.name
+            guard let media = media else {return}
+            artistNameLabel.text = media.artistName
+            mediaNameLabel.text = media.name
+            
+            guard let artworkUrl = URL(string: media.artworkUrl) else {return}
+            getArtworkFromUrl(artworkUrl)
         }
+    }
+    
+    private func getArtworkFromUrl(_ url: URL) {
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        
+        // constraints
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        artworkImageView.addSubview(activityIndicator)
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: artworkImageView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: artworkImageView.centerYAnchor).isActive = true
+        
+        activityIndicator.startAnimating()
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            guard let responseData = data else {return}
+            let image = UIImage.init(data: responseData)
+            
+            DispatchQueue.main.async {
+                self.artworkImageView.image = image
+                activityIndicator.stopAnimating()
+            }
+            
+        }.resume()
+        
+        
     }
 
     override func awakeFromNib() {
@@ -46,19 +77,25 @@ class ItunesMediaItemCell: UITableViewCell {
     }
     
     private func setupImageView() {
+        artworkImageView.layer.cornerRadius = 15
+        artworkImageView.layer.masksToBounds = true
+        artworkImageView.contentMode = .scaleAspectFit
+        
         // constraints for artworkImageView
         artworkImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(artworkImageView)
         
-        artworkImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        artworkImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         artworkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
         artworkImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
-        artworkImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        artworkImageView.heightAnchor.constraint(equalToConstant: 70).isActive =  true
+        artworkImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        artworkImageView.heightAnchor.constraint(equalToConstant: 60).isActive =  true
     }
     
     private func setupInfoStackView() {
         artistNameLabel.textColor = .white
+        artistNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        
         mediaNameLabel.textColor = .white
         
         contentView.addSubview(artistNameLabel)

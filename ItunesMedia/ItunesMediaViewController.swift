@@ -132,8 +132,7 @@ extension ItunesMediaViewController {
         return 80.0
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return feeds[section].title
     }
-    
 }
