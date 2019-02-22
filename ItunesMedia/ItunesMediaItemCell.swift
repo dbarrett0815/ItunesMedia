@@ -74,10 +74,12 @@ class ItunesMediaItemCell: UITableViewCell {
         setupInfoStackView()
         
         contentView.backgroundColor = .gray
+        backgroundColor = .gray
+        selectionStyle = .none
     }
     
     private func setupImageView() {
-        artworkImageView.layer.cornerRadius = 20
+        artworkImageView.layer.cornerRadius = 10
         artworkImageView.layer.masksToBounds = true
         artworkImageView.contentMode = .scaleAspectFit
         
@@ -86,8 +88,7 @@ class ItunesMediaItemCell: UITableViewCell {
         contentView.addSubview(artworkImageView)
         
         artworkImageView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
-        artworkImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        artworkImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        artworkImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         artworkImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         artworkImageView.heightAnchor.constraint(equalToConstant: 60).isActive =  true
     }

@@ -10,14 +10,20 @@ import UIKit
 
 class ItunesMediaViewController: UITableViewController {
     
+    // MARK: - Variables
+    
     var feeds = [ItunesFeed]()
     let mediaCellId = "mediaCell"
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         fetchItunesMedia()
     }
+    
+    // MARK: - Helpers
     
     private func setupView() {
         title = "Itunes Media"
@@ -45,12 +51,14 @@ class ItunesMediaViewController: UITableViewController {
             }
             
             guard let responseData = data else {return}
+            
             do {
                 let feedReponse = try JSONDecoder().decode(ItunesFeedResponse.self, from: responseData)
                 
                 DispatchQueue.main.async {
                     self.feeds.append(feedReponse.feed)
                     self.tableView.reloadData()
+                    self.tableView.hideCenterText()
                 }
                 
             } catch {
@@ -58,7 +66,6 @@ class ItunesMediaViewController: UITableViewController {
                 print(error)
             }
         }.resume()
-
     }
     
     private func fetchNewMusic() {
@@ -73,12 +80,14 @@ class ItunesMediaViewController: UITableViewController {
             }
             
             guard let responseData = data else {return}
+            
             do {
                 let feedReponse = try JSONDecoder().decode(ItunesFeedResponse.self, from: responseData)
                 
                 DispatchQueue.main.async {
                     self.feeds.append(feedReponse.feed)
                     self.tableView.reloadData()
+                    self.tableView.hideCenterText()
                 }
                 
             } catch {
@@ -90,6 +99,8 @@ class ItunesMediaViewController: UITableViewController {
     
     /// Gets new apps and new itunes music. A network call like this would typically go in its own class of other network functions
     private func fetchItunesMedia() {
+        tableView.showCenterTextWithLoadingIndicator("Loading Itunes Media")
+        
         fetchNewMusic()
         fetchNewApps()
     }
@@ -103,6 +114,7 @@ class ItunesMediaViewController: UITableViewController {
         
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: nil)
+            self.tableView.showCenterText("No Itunes Items")
         }
     }
 }
