@@ -105,9 +105,10 @@ class ItunesMediaItemCell: UITableViewCell {
     
     private func setupInfoStackView() {
         artistNameLabel.textColor = .white
-        artistNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        artistNameLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
         mediaNameLabel.textColor = .white
+        mediaNameLabel.font = UIFont.systemFont(ofSize: 10)
         
         contentView.addSubview(artistNameLabel)
         contentView.addSubview(mediaNameLabel)
@@ -127,13 +128,13 @@ class ItunesMediaItemCell: UITableViewCell {
     
     private func setupKindLabel() {
         kindLabel.textColor = .white
-        kindLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        kindLabel.font = UIFont.boldSystemFont(ofSize: 10)
         
         kindLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(kindLabel)
         
         // constraints
-        kindLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: 10).isActive = true
+        kindLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
         kindLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
 }
