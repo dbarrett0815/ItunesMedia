@@ -13,11 +13,13 @@ struct ItunesMedia: Codable {
     let id: String
     let name: String
     let artworkUrl: String
+    let kind: String
     
     private enum CodingKeys: String, CodingKey {
         case artistName
         case id
         case name
         case artworkUrl = "artworkUrl100"
+        case kind
     }
 }

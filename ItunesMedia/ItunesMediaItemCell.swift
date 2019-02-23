@@ -13,13 +13,24 @@ class ItunesMediaItemCell: UITableViewCell {
     // MARK: - Variables
     var artworkImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     var artistNameLabel = UILabel()
-    var mediaNameLabel =  UILabel()
+    var mediaNameLabel = UILabel()
+    var kindLabel = UILabel()
     
     var media: ItunesMedia? {
         didSet {
             guard let media = media else {return}
             artistNameLabel.text = media.artistName
             mediaNameLabel.text = media.name
+            
+            // could probably use some enum here.
+            switch media.kind {
+            case "iosSoftware":
+                kindLabel.text = "iOS App"
+            case "album":
+                kindLabel.text = "Music Album"
+            default:
+                kindLabel.text = "Unknown"
+            }
             
             guard let artworkUrl = URL(string: media.artworkUrl) else {return}
             getArtworkFromUrl(artworkUrl)
@@ -49,8 +60,6 @@ class ItunesMediaItemCell: UITableViewCell {
             }
             
         }.resume()
-        
-        
     }
 
     override func awakeFromNib() {
@@ -72,6 +81,7 @@ class ItunesMediaItemCell: UITableViewCell {
     private func setupCell() {
         setupImageView()
         setupInfoStackView()
+        setupKindLabel()
         
         contentView.backgroundColor = .gray
         backgroundColor = .gray
@@ -114,5 +124,16 @@ class ItunesMediaItemCell: UITableViewCell {
         stackView.leadingAnchor.constraint(equalTo: artworkImageView.trailingAnchor, constant: 20).isActive = true
         stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
-
+    
+    private func setupKindLabel() {
+        kindLabel.textColor = .white
+        kindLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        
+        kindLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(kindLabel)
+        
+        // constraints
+        kindLabel.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: 10).isActive = true
+        kindLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    }
 }
